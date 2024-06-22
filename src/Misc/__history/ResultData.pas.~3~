@@ -1,0 +1,29 @@
+unit ResultData;
+
+interface
+uses SysUtils;
+
+type
+  TResultData = class
+    private
+      function GetTotalDiotic() : string;
+      function GetTotalDichotic() : string;
+      function GetCorrectDiotic() : string;
+      function GetCorrectDichotic() : string;
+      function GetPercentDiotic() : string;
+      function GetPercentDichotic() : string;
+      function GetPercentTotal() : string;
+    public
+      property TotalDiotic : string read GetTotalDiotic write SetTotalDiotic;
+      property TotalDichotic : string read GetTotalDichotic write SetTotalDichotic;
+      property CorrectDiotic : string read GetCorrectDiotic write SetCorrectDiotic;
+      property CorrectDichotic : string read GetCorrectDichotic write SetCorrectDichotic;
+      property PercentDiotic : string read GetPercentDiotic write SetPercentDiotic;
+      property PercentDichotic : string read GetPercentDichotic write SetPercentDichotic;
+      property PercentTotal : string read GetPercentTotal write SetPercentTotal;
+  end;
+
+implementation
+
+
+end.

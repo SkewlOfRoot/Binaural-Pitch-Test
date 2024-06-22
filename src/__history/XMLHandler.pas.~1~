@@ -1,0 +1,18 @@
+unit XMLHandler;
+
+interface
+  uses SysUtils;
+  type
+    TXMLHandler = class
+
+    private
+
+    public
+
+  end;
+
+
+
+implementation
+
+end.

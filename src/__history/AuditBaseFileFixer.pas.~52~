@@ -1,0 +1,96 @@
+unit AuditBaseFileFixer;
+
+interface
+uses SysUtils, Classes, Dialogs;
+
+  type
+    TAuditBaseFileFixer = class
+
+    private
+
+    public
+      function FixFile(fileName : string) : boolean;
+    
+    end;
+
+implementation
+
+{$Optimization Off}
+
+function TAuditBaseFileFixer.FixFile(fileName: string) : boolean;
+  var
+    ok : boolean;
+    stream : TFileStream;
+    destStream : TFileStream;
+    filedata : array of byte;
+    theFile : File of byte;
+
+    i : integer;
+    delCount : integer;
+    value : byte;
+
+    mstream : TMemoryStream;
+
+    control : array of byte;
+
+begin
+  if FileExists(fileName) then begin
+    AssignFile(theFile,fileName);
+    Reset(theFile);
+    SetLength(filedata,FileSize(theFile));
+    Close(theFile);
+
+    stream := TFileStream.Create(fileName,fmOpenRead);
+    try
+      stream.Position := 0;
+      stream.Read(filedata[0],stream.Size);
+      delCount := 0;
+      for i := Length(filedata)-1 downto 0 do begin
+        value := filedata[i];
+        if not (value = 62) then begin  //62 is the deci value for the ascii char '>'(that should be the last char in the file).
+          filedata[i] := 0;
+          inc(delCount);
+        end
+        else
+          Break;
+      end;
+    finally
+      stream.Free;
+    end;
+    SetLength(filedata,Length(filedata)-delCount);
+
+
+
+    stream := TFileStream.Create(fileName, fmOpenWrite);
+    try
+      stream.Position := 0;
+      i := Length(filedata);
+      stream.Write(filedata,Length(filedata));
+
+    finally
+      stream.Free;
+    end;
+
+
+    {
+    mstream := TMemoryStream.Create;
+    try
+      mstream.Write(filedata,Length(filedata));
+      mstream.SaveToFile(fileName);
+    finally
+      mstream.Free;
+    end;
+    }
+
+    AssignFile(theFile,fileName);
+    Reset(theFile);
+    SetLength(control,FileSize(theFile));
+    CloseFile(theFile);
+    stream := TFileStream.Create(fileName, fmOpenRead);
+    stream.Position := 0;
+    stream.Read(control[0], stream.Size);
+
+  end;
+  Result := ok;
+end;
+end.

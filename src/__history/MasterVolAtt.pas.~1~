@@ -1,0 +1,14 @@
+unit MasterVolAtt;
+
+interface
+uses SysUtils;
+
+  type
+    TMasterVolAtt = class
+    public
+    private
+  end;
+
+implementation
+
+end.

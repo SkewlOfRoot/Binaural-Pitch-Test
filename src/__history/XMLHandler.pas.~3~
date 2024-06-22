@@ -1,0 +1,39 @@
+unit XMLHandler;
+
+interface
+  uses SysUtils, Windows;
+  type
+    TXMLHandler = class
+
+    private
+
+    public
+      function LoadXmlDoc(filename : string) : boolean;
+
+  end;
+
+implementation
+
+  function TXMLHandler.LoadXmlDoc(filename: string) : boolean;
+  var
+  Doc: TDOMDocument;
+  List: TDomNodeList;
+  Len, i: Integer;
+  S: string;
+begin
+  Memo1.Clear;
+  ListBox1.Items.Clear;
+  
+  Doc := XmlToDomParser1.FileToDom(GetStartDir + 'sam1.html');
+  Len := DomImplementation1.documents.Length;
+  for i := 0 to Len - 1 do begin
+    S := DomImplementation1.Documents.Item(i).ChildNodes.Item(i).Code;
+    Memo1.Lines.Add(S);
+  end;
+
+  List := Doc.DocumentElement.GetElementsByTagName('CD');
+  for i := 0 To List.length -1 do
+    ListBox1.Items.Add(List.item(i).Code);
+end;
+
+end.

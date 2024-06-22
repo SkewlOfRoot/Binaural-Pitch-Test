@@ -1,0 +1,20 @@
+unit MasterVolAtt;
+
+interface
+uses SysUtils;
+
+  type
+    TMasterVolAtt = class
+    private
+      function GetDB() : integer;
+      function GetSoundCardVal() : integer;
+      procedure SetDB(value : integer);
+      procedure SetSoundCardVal(value : integer);
+    public
+      property DB : integer read GetDB write SetDB;
+      property SoundCardVal : integer read GetSoundCardVal write SetSoundCardVal;
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,15 @@
+unit PatientData;
+
+interface
+uses SysUtils;
+
+type
+  TPatientData = class
+
+  private
+  public
+  end;
+
+implementation
+
+end.

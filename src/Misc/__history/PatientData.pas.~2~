@@ -1,0 +1,27 @@
+unit PatientData;
+
+interface
+uses SysUtils;
+
+type
+  TPatientData = class
+
+  private
+    function GetCpr() : string;
+    function GetFirstName() : string;
+    function GetSurname() : string;
+    function GetComment() : string;
+    procedure SetCpr(value : string);
+    procedure SetFirstName(value : string);
+    procedure SetSurname(value : string);
+    procedure SetComment(value : string);
+  public
+    property Cpr : string read GetCpr write SetCpr;
+    property FirstName : string read GetFirstName write SetFirstName;
+    property Surname : string read GetSurname write SetSurname;
+    property Comment : string read GetComment write SetComment;
+  end;
+
+implementation
+
+end.

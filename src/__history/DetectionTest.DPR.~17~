@@ -1,0 +1,31 @@
+program DetectionTest;
+
+uses
+  Forms,
+  SDIMAIN in 'SDIMAIN.PAS' {SDIAppForm},
+  ABOUT in 'ABOUT.PAS' {AboutBox},
+  SoundPlayer in 'SoundPlayer.pas',
+  ReadWaveHeader in 'ReadWaveHeader.pas',
+  Block in 'Block.pas',
+  CreateNewTestForm in 'CreateNewTestForm.pas' {CreateNewTest},
+  VolumeControlForm in 'VolumeControlForm.pas' {VolumeControl},
+  MasterVolAtt in 'MasterVolAtt.pas',
+  SoundCardCalib in 'SoundCardCalib.pas',
+  BinauralPitchTest in 'BinauralPitchTest.pas',
+  MixerUnit in 'MixerUnit.pas',
+  DeviceControlForm in 'DeviceControlForm.pas' {DeviceControl},
+  AuditBaseFileFixer in 'AuditBaseFileFixer.pas',
+  ConfigFile in 'ConfigFile.pas';
+
+{$R *.RES}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TSDIAppForm, SDIAppForm);
+  Application.CreateForm(TAboutBox, AboutBox);
+  Application.CreateForm(TCreateNewTest, CreateNewTest);
+  Application.CreateForm(TVolumeControl, VolumeControl);
+  Application.CreateForm(TDeviceControl, DeviceControl);
+  Application.Run;
+end.
+

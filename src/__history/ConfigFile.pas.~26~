@@ -1,0 +1,60 @@
+unit ConfigFile;
+
+interface
+uses SysUtils,IniFiles;
+
+  type
+    TConfigFile = class
+
+    private
+      waveDir : string;
+      testDir : string;
+      resultDir : string;
+      soundCardDir : string;
+      splLevel : string;
+      splOff : string;
+      bptExt : string;
+      function GetDefaultWaveDir() : string;
+      function GetDefaultTestDir() : string;
+      function GetDefaultResultDir() : string;
+      function GetSoundCardCalibDir() : string;
+      function GetDefaultSplLevel() : string;
+      function GetSplOffset() : string;
+      function GetBptExtension() : string;
+
+    public
+      property DefaultWaveDir : string read GetDefaultWaveDir;
+      property DefaultTestDir : string read GetDefaultTestDir;
+      property DefaultResultDir : string read GetDefaultResultDir;
+      property SoundCardCalibDir : string read GetSoundCardCalibDir;
+      property DefaultSplLevel : string read GetDefaultSplLevel;
+      property SplOffset : string read GetSplOffset;
+      property BptExtension : string read GetBptExtension;
+
+    published
+      constructor Create(iniPath : string);
+    end;
+
+implementation
+
+constructor TConfigFile.Create(iniPath: string);
+  var iniFile : TIniFile;
+begin
+   iniFile := TIniFile.Create(inipath);
+   defaultWaveDir := iniFile.ReadString('Const','Default wave dir', 'C:\DetectionTest\Wave\');
+   defaultTestDir := iniFile.ReadString('Const','Default tests dir', 'C:\DetectionTest\Tests\');
+   defaultResultDir := iniFile.ReadString('Const','Default results dir', 'C:\DetectionTest\Results\');
+   soundCardDir := iniFile.ReadString('Const','SoundCardCalib','C:\DetectionTest\SoundCardCalib.xml');
+   splLevel := iniFile.ReadString('Const','DefaultSplLevel','75');
+   bptExt := iniFile.ReadString('Const','BptExt','bpt');
+end;
+
+function TConfigFile.GetDefaultWaveDir() : string; begin Result := waveDir; end;
+function TConfigFile.GetDefaultTestDir() : string; begin Result := testDir; end;
+function TConfigFile.GetDefaultResultDir() : string; begin Result := resultDir; end;
+function TConfigFile.GetSoundCardCalibDir() : string; begin Result := soundCardDir; end;
+function TConfigFile.GetDefaultSplLevel():string; begin Result := splLevel; end;
+function TConfigFile.GetSplOffset():string; begin Result := splOff; end;
+function TConfigFile.GetBptExtension():string; begin Result := bptExt; end;
+
+end.

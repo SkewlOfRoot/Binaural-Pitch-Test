@@ -1,0 +1,11 @@
+[Const]
+Default wave dir=C:\DetectionTest\Wave\
+Default tests dir=C:\DetectionTest\Tests\
+Default results dir=C:\DetectionTest\Results\
+SoundCardCalib=C:\DetectionTest\SoundCardCalib.xml
+DefaultSPLLevel=75
+SplOffset=55
+BptExt=bpt
+
+
+

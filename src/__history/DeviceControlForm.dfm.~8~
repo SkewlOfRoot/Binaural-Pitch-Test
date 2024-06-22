@@ -1,0 +1,72 @@
+object DeviceControl: TDeviceControl
+  Left = 750
+  Top = 419
+  Caption = 'DeviceControl'
+  ClientHeight = 259
+  ClientWidth = 334
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesigned
+  PixelsPerInch = 96
+  TextHeight = 13
+  object grpDevices: TGroupBox
+    Left = 0
+    Top = 0
+    Width = 326
+    Height = 146
+    Caption = 'Devices'
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 83
+      Top = 120
+      Width = 40
+      Height = 13
+      Caption = 'No input'
+    end
+    object lblInput: TLabel
+      Left = 22
+      Top = 120
+      Width = 30
+      Height = 13
+      Caption = 'Input:'
+    end
+    object listDevice: TListBox
+      Left = 19
+      Top = 23
+      Width = 198
+      Height = 81
+      ItemHeight = 13
+      TabOrder = 0
+    end
+    object btnUseDevice: TButton
+      Left = 238
+      Top = 54
+      Width = 75
+      Height = 25
+      Caption = 'Test'
+      TabOrder = 1
+      OnClick = btnUseDeviceClick
+    end
+  end
+  object btnClose: TButton
+    Left = 251
+    Top = 231
+    Width = 75
+    Height = 25
+    Caption = 'Close'
+    TabOrder = 1
+    OnClick = btnCloseClick
+  end
+  object hidDeviceController: TJvHidDeviceController
+    OnEnumerate = hidDeviceControllerEnumerate
+    OnDeviceChange = hidDeviceControllerDeviceChange
+    OnDeviceData = hidDeviceControllerDeviceData
+    Left = 96
+    Top = 232
+  end
+end
